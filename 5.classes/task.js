@@ -1,5 +1,6 @@
 class PrintEditionItem {
-    constructor(name, releaseDate, pagesCount) {
+    constructor(authtor, name, releaseDate, pagesCount) {
+      this.authtor = authtor;
       this.name = name;
       this.releaseDate = releaseDate;
       this.pagesCount = pagesCount;
@@ -34,11 +35,12 @@ class PrintEditionItem {
   
   
   const sherlock = new PrintEditionItem(
+    null,
    "Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе",
    2019,
    1008
   );
-  
+  console.log(sherlock.authtor);
   console.log(sherlock.releaseDate); //2019
   console.log(sherlock.state); //100
   sherlock.fix();
@@ -54,18 +56,27 @@ class PrintEditionItem {
   
   
   class Book extends PrintEditionItem {
-    constructor(name, releaseDate, pagesCount, author) {
-      super(name, releaseDate, pagesCount);
-      this.author = author;
+    constructor(authtor, name, releaseDate, pagesCount) {
+      super(authtor, name, releaseDate, pagesCount);
+      //this.authtor = authtor;
       this.type = "book";
     }
+  }
+
+  class NovelBook extends Book {
+    constructor (authtor, name, releaseDate, pagesCount) {
+      super (authtor, name, releaseDate, pagesCount);
+      this.type = "novel";
+    }
+
   }
   
   
   
   class FantasticBook extends Book {
-    constructor(name, releaseDate, pagesCount, author) {
-      super(name, releaseDate, pagesCount, author);
+    constructor(authtor, name, releaseDate, pagesCount,) {
+      super(authtor, name, releaseDate, pagesCount);
+      //this.authtor = authtor;
   
       this.tipe = "fantastic";
     }
@@ -80,7 +91,7 @@ class PrintEditionItem {
     
   );
   
-  console.log(picknick); //"Аркадий и Борис Стругацкие"
+  console.log(picknick.authtor); //"Аркадий и Борис Стругацкие"
   picknick.state = 10;
   console.log(picknick.state); //10
   picknick.fix();
